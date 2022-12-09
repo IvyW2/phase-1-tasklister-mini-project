@@ -1,23 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // your code here
-  document.addEventListener("DOMContentLoaded", () => {
-    // your code here
-    document.getElementById("craete-task-form").addEventListener("submit", (e) =>{
-      e.preventDefault()
-      submitBtn(e.target.input.value)
-    })
-  });
-  function submitBtn(task){
-    let ul = document.getElementById('tasks')
-    let li = document.createElement("li")
-    ul.appendChild(li)
-    li.inerText =`${task}`
-    let x = document.createElement('button')
-    x.addEventListener("click", deleteElem)
-    x.innerText= 'X'
-    li.appendChild(x)
-  }
-  function deleteElem(e){
-    e.target.parentNode.remove()
-  }
+const textbox = document.getElementById("create-task-form");
+textbox.addEventListener("submit", (e) => {
+  e.preventDefault();
+  buildToDo(e.target.new_task_description.value);
 });
+function buildToDo(e_target_new_task_description_value) {
+  const list = document.createElement("li");
+  const button = document.createElement("button");
+  list.textContent = `${e_target_new_task_description_value}  `;
+  button.textContent = "x";
+  const unordered_list = document.getElementById("tasks");
+  unordered_list.appendChild(list);
+  list.appendChild(button)
+  button.addEventListener("click", deleteToDoItem)
+  function deleteToDoItem(list) {
+    return list.target.parentNode.remove()
+  }
+}
